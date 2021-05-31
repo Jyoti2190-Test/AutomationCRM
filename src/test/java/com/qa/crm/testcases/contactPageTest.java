@@ -33,7 +33,7 @@ public class contactPageTest extends TestBase {
 				
 	}
 	
-	@Test(priority=1)
+	@Test(priority=1, retryAnalyzer = Analyzer.retyAnalyzer.class)
 	public void verifyContactLabelTest()
 	{
 		contact = homePage.clickOnContactsList();	
