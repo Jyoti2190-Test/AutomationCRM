@@ -4,7 +4,9 @@
 <listeners>
  <listener
  class-name="com.qa.ExtentReportListener.ExtentReportListener" /> 
-</listeners>
+<listener 
+class-name="Analyzer.myTransformer"/>
+</listeners> 
 
 <test name="Free CRM App">
 <classes>
