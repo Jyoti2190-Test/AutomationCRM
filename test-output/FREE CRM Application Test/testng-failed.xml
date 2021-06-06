@@ -3,23 +3,15 @@
 <suite name="Failed suite [FREE CRM Application Test]" guice-stage="DEVELOPMENT">
   <listeners>
     <listener class-name="com.qa.ExtentReportListener.ExtentReportListener"/>
+    <listener class-name="Analyzer.myTransformer"/>
   </listeners>
   <test thread-count="5" name="Free CRM App(failed)">
     <classes>
-      <class name="com.qa.crm.testcases.homePageTest">
-        <methods>
-          <include name="verifyUserNameLabelTest"/>
-          <include name="tearDown"/>
-          <include name="verifyContactsLinkTest"/>
-          <include name="setup"/>
-        </methods>
-      </class> <!-- com.qa.crm.testcases.homePageTest -->
       <class name="com.qa.crm.testcases.contactPageTest">
         <methods>
           <include name="selectSingleContactTest"/>
           <include name="selectMultipleContactTest"/>
-          <include name="validateCreateNewContact" invocation-numbers="2"/>
-          <include name="verifyContactLabelTest"/>
+          <include name="validateCreateNewContact" invocation-numbers="0 0"/>
           <include name="tearDown"/>
           <include name="setup"/>
         </methods>
