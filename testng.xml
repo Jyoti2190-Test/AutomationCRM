@@ -6,11 +6,12 @@
  class-name="com.qa.ExtentReportListener.ExtentReportListener" /> 
 <listener 
 class-name="Analyzer.myTransformer"/>
-</listeners> 
-
+</listeners>
 <test name="Free CRM App">
 <classes>
-  <class name="com.qa.crm.testcases.loginPageTest"></class>
+  <class name="com.qa.crm.testcases.loginPageTest">
+  <methods> <exclude name="loginPageTitle"/></methods> 
+  </class>
   <class name="com.qa.crm.testcases.homePageTest"></class> 
   <class name="com.qa.crm.testcases.contactPageTest"></class>
  

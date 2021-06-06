@@ -23,6 +23,7 @@ public class contactPageTest extends TestBase {
 		super();
 	}
 	
+	
 	@BeforeMethod
 	public void setup()
 	{
@@ -33,7 +34,7 @@ public class contactPageTest extends TestBase {
 				
 	}
 	
-	@Test(priority=1, retryAnalyzer = Analyzer.retyAnalyzer.class)
+	@Test(priority=1)
 	public void verifyContactLabelTest()
 	{
 		contact = homePage.clickOnContactsList();	
@@ -45,14 +46,22 @@ public class contactPageTest extends TestBase {
 	public void selectSingleContactTest()
 	{
 		contact = homePage.clickOnContactsList();	
-		contact.selectContact("Varun Aggrawal");
+		contact.selectContact("Varun Sharma");
 	}
 	
-	@Test(priority=3)
+	@Test(priority=3, dependsOnMethods = "selectSingleContactTest")
+	public void deleteContact()
+	{contact = homePage.clickOnContactsList();
+	contact.deleteContact("Varun Sharma");
+	boolean flag = contact.verifyContactLabel();
+	Assert.assertTrue(flag, "contacts label is missing");
+	}
+	
+	@Test(priority=4, dependsOnMethods = "selectSingleContactTest")
 	public void selectMultipleContactTest()
 	{
 		contact = homePage.clickOnContactsList();	
-		contact.selectContact("Varun Aggrawal");
+		contact.selectContact("David Cris");
 		contact.selectContact("test test");
 	}
 	@DataProvider
@@ -63,7 +72,7 @@ public class contactPageTest extends TestBase {
 		
 	}
 	
-	@Test(priority=4 , dataProvider = "getCRMTestData")
+	@Test(priority=5 , dataProvider = "getCRMTestData", enabled=true)
 	public void validateCreateNewContact(String firstName, String lastName, String company)
 	{
 		homePage.clickOnAddContactLink();
@@ -71,6 +80,15 @@ public class contactPageTest extends TestBase {
 		contact.createNewContact(firstName, lastName, company);
 	}
 	
+	@Test(priority=6)
+	public void deleteAllContats() throws InterruptedException
+	{
+		contact = homePage.clickOnContactsList();
+		contact.alldeleteContact();
+		Assert.assertEquals(contact.verifyAllContactsDeleted(),1 );
+		Assert.assertEquals(contact.Warningtext(), "No records found");
+		
+	}
 	@AfterMethod
 	public void tearDown()
 	{

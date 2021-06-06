@@ -16,7 +16,6 @@ public class loginPageTest extends TestBase {
 	public loginPageTest() {
 		super();
 	}
-	
 	@BeforeMethod
 	public void setup()
 	{
@@ -24,14 +23,14 @@ public class loginPageTest extends TestBase {
 		loginPage = new LoginPage();
 	}
 
-	@Test(priority=1)
+	@Test(priority=1, groups= {"Smoke Test"})
 	public void loginPageTitle()
 	{
 		String title = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(title, "Cogmento CRM");
 	}
 	
-	@Test(priority=2)
+	@Test(priority=2,groups= {"Smoke Test"})
 	public void logintest()
 	{
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
